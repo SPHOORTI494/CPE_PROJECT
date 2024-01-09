@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+
+int encrypt()
+{   int len,shift,n;
+    char message[100];
+    //printf("enter size of text: \n");
+    //scanf("%s",&n);
+    printf("enter text and halt with ~");
+    scanf("%[^'~']s",&message);
+    getchar();
+    printf("Enter the shift value: ");
+    scanf("%d", &shift);
+    char ch;
+    n=strlen(message);
+    for (int i = 0;i<n; i++)
+    {ch = message[i];
+      printf("starting %c",ch);
+         if (ch >= 'a' && ch <= 'z')
+            { printf(" %c ",ch);
+                ch = ch + shift;
+                printf(" %c",ch);
+            }
+
+            if (ch > 'z')
+                {ch = ch - 'z' + 'a' - 1;}
+                message[i] = ch;
+    }
+
+
+    printf("Encrypted message: %s\n", message);
+    return 0;
+}
