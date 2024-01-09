@@ -1,12 +1,13 @@
 #include<stdio.h>
 #include<string.h>
 
+
 int encrypt()
 {   int len,shift,n;
     char message[100];
     //printf("enter size of text: \n");
     //scanf("%s",&n);
-    printf("enter text and halt with ~");
+    printf("enter text and halt with ~ symbol\n");
     scanf("%[^'~']s",&message);
     getchar();
     printf("Enter the shift value: ");
@@ -15,11 +16,11 @@ int encrypt()
     n=strlen(message);
     for (int i = 0;i<n; i++)
     {ch = message[i];
-      printf("starting %c",ch);
+      //printf("starting %c",ch);
          if (ch >= 'a' && ch <= 'z')
-            { printf(" %c ",ch);
+            { //printf(" %c ",ch);
                 ch = ch + shift;
-                printf(" %c",ch);
+                //printf("%c",ch);
             }
 
             if (ch > 'z')
@@ -29,5 +30,57 @@ int encrypt()
 
 
     printf("Encrypted message: %s\n", message);
+    return 0;
+}
+int decrypt()
+{   int len,shift,n;
+    char message[100];
+    //printf("enter size of text: \n");
+    //scanf("%s",&n);
+    printf("enter text and halt with ~ symbol\n");
+    scanf("%[^'~']s",&message);
+    getchar();
+    printf("Enter the shift value: ");
+    scanf("%d", &shift);
+    char ch;
+    n=strlen(message);
+    for (int i = 0;i<n; i++)
+    {ch = message[i];
+      //printf("starting %c",ch);
+         if (ch >= 'a' && ch <= 'z')
+            { //printf(" %c ",ch);
+                ch = ch - shift;
+                //printf("%c",ch);
+            }
+
+            if (ch > 'z')
+                {ch = ch - 'z' + 'a' - 1;}
+                message[i] = ch;
+    }
+
+
+    printf("Encrypted message: %s\n", message);
+    return 0;
+}
+int main()
+{   int choice,shift;
+    printf("\t \t CAESER CIPHER \t \t \n");
+    printf("Select:\n>1 to encrypt\n>2 to decrypt \n");
+    printf("what's your choice?\n");
+    scanf("%d",&choice);
+    int n;
+
+    switch(choice)
+    {
+        case 1 : encrypt();
+                 break;
+        case 2 : decrypt();
+                 break;
+        default : printf("wrong choice");
+                 break;
+    }
+    
+    printf("\ndate : %s",__DATE__);
+    printf("\ttime : %s",__TIME__);
     return 0;
 }
